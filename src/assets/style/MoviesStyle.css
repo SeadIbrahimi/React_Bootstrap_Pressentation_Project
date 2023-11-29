@@ -1,0 +1,68 @@
+@-webkit-keyframes scale-in-hor-center{0%{-webkit-transform:scaleX(0);transform:scaleX(0);opacity:1}100%{-webkit-transform:scaleX(1);transform:scaleX(1);opacity:1}}@keyframes scale-in-hor-center{0%{-webkit-transform:scaleX(0);transform:scaleX(0);opacity:1}100%{-webkit-transform:scaleX(1);transform:scaleX(1);opacity:1}}
+#scroller{
+    scroll-behavior: smooth;
+    cursor: pointer;
+}
+
+#scroller::-webkit-scrollbar{
+    width: 0;
+}
+
+.movieContainer{
+    cursor: grab;
+    background-image: url('../img/Movie\ strip.png');
+    background-size: contain;
+}
+.movieContainer:active{
+    cursor: grabbing;
+}
+
+.arrowCardLeft{
+    height: 100%;
+    width: 250px;
+    background: linear-gradient(to right, #212529 25%, transparent);
+    align-items: center;
+}
+.arrowCardRight{
+    height: 100%;
+    right: 0px !important;
+    top: 0px !important;
+    width: 250px;
+    background: linear-gradient(to left, #212529 25%, transparent);
+    align-items: center;
+}
+
+.arrowCardLeft i,
+.arrowCardRight i{
+    font-size: 60px;
+    margin: 10px;
+    color: rgba(102, 101, 101, 0.178) !important;
+}
+.arrowCardLeft i:hover,
+.arrowCardRight i:hover{
+    cursor: pointer;
+    scale: 1.2;
+    color: rgba(102, 102, 102, 0.479) !important;
+}
+
+.cardHover{
+    border-radius: 10px;
+    border: none;
+}
+.cardHover img{
+    border-radius: 10px;
+}
+.cardHover:hover{
+    background-color: aliceblue;
+}
+
+.movieContainer .not-active{
+    display: none !important;
+}
+
+.MovieImg{
+    -webkit-animation:scale-in-hor-center .5s cubic-bezier(.25,.46,.45,.94) both;animation:scale-in-hor-center .5s cubic-bezier(.25,.46,.45,.94) both;
+    box-shadow: 0px 0px 159px -28px rgba(0,0,0,0.53) inset;
+-webkit-box-shadow: 0px 0px 159px -28px rgba(0,0,0,0.53) inset;
+-moz-box-shadow: 0px 0px 159px -28px rgba(0,0,0,0.53) inset;
+}

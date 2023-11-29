@@ -1,0 +1,8 @@
+.cardHover{
+    padding: 5px;
+}
+.cardHover:hover{
+    background-color: aliceblue !important;
+    color: black !important;
+    box-shadow: none;
+}
