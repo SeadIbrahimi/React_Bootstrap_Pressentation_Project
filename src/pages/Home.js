@@ -28,15 +28,17 @@ function Home() {
       password: form[2].value,
       favorites: [],
     }
-
-    if(users.filter(ls_user => user.email == ls_user).length > 0) {
+    const existedUser = users.filter(db_user => db_user.email == user.email)
+    console.log(users)
+    if(existedUser.length > 0) {
       alert(`${user.email} is already is use! Please choose different email address.`)
-    } else {
+    }else{
       setUsers([...users, user])
       setIsLoggedIn(user)
       navigate('/movies')
     }
   }
+
   return (
     <>
     <MainMenu/>

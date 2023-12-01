@@ -10,7 +10,7 @@ import { useLocalStorage } from '@uidotdev/usehooks';
 
 function Movies() {
   const navigate = useNavigate()
-  const [movieId, setMovieId] = useState('529203')
+  const [movieId, setMovieId] = useState('1075794')
   const [page, setPage] = useLocalStorage(1)
 
   
