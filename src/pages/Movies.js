@@ -11,8 +11,8 @@ import { useLocalStorage } from '@uidotdev/usehooks';
 function Movies() {
   const navigate = useNavigate()
   const [movieId, setMovieId] = useState('1075794')
-  const [page, setPage] = useLocalStorage(1)
-
+  const [page, setPage] = useState(1)
+  const [search, setSearch] = useState('')
   
   const handleCardClick = (e) => {
     e.preventDefault()
@@ -22,12 +22,17 @@ function Movies() {
   
   const [movies, setMovies] = useState([])
 
+  const handleSearch = (e) => {
+    setSearch(e)
+  }
+
   const apiKey = '3e52e2f5350ae60de5e2fc58e818d2a0'
+
   useEffect(()=>{
-    axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${page}`
-    )
+    axios.get(`https://api.themoviedb.org/3/${(search != '') ? 'search' : 'discover'}/movie?api_key=${apiKey}${(search != '' ) ? '&query=' + search : '&page=' + page}`)
     .then(response => setMovies(response.data.results))
-  }, [setPage])
+  }, [search, page])
+
   const scroller = document.querySelector('#scroller')
   const leftArrow = document.querySelector('.arrowCardLeft')
   const rightArrow = document.querySelector('.arrowCardRight')
@@ -73,7 +78,7 @@ function Movies() {
   return (
     <div style={{height: '100vh'}} className='d-flex w-auto bg-dark text-light'>
       <div className='bg-black h-100'>
-        <SideMenu/>
+        <SideMenu sendDataToParent={handleSearch}/>
       </div>
       
       <div className='h-100 bg-dark' style={{display: 'grid', gap: '10px', gridTemplateRows: '2.1fr 1.4fr' }}>
@@ -88,6 +93,7 @@ function Movies() {
         <div className='movieContainer m-0 overflow-hidden position-relative d-flex align-items-center bg-black' >
             <div id='scroller' style={{height: '65%'}} className='pt-3 row overflow-y-hidden overflow-x-scroll flex-nowrap'>
               {
+                (movies.length > 0)?
                 movies.map((movie, index) => (
 
                   <div onClick={handleCardClick} key={movie.id} index={movie.id} className='m-0 border-0 col-2 text-center'>
@@ -95,6 +101,10 @@ function Movies() {
                     
                   </div>
                 ))
+                :
+                <div className='m-0 border-0 col-12 text-center'>
+                  <h1 className='w-100'>No movies found with name "{search}"</h1>
+                </div>
               }
               
               <div onClick={scrollLeftHendler} className='arrowCardLeft position-absolute d-flex left-0 top-0 justify-content-start not-active'>

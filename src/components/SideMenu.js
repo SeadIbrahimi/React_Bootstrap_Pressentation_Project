@@ -7,14 +7,20 @@ import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-function SideMenu() {
+function SideMenu(search) {
     const navigate = useNavigate()
     const getLocation = useLocation()
     const [location, setLocation] = useState(getLocation.pathname)
     const [isLoggedIn, setIsLoggedIn] = useLocalStorage('isloggedin')
-    
-    
 
+    const handleSearch = (e) => {
+        e.preventDefault()
+        search.sendDataToParent(e.target.value);
+    }
+    const handleSearchSubmit = (e) => {
+        e.preventDefault()
+        search.sendDataToParent(e.target.value);
+    }
     if (isLoggedIn == null){
         navigate("/");
     }
@@ -51,9 +57,9 @@ function SideMenu() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav ">
             <Nav className="me-auto d-flex flex-column text-nowrap gap-5 pt-5">
-                <Form inline>
+                <Form inline onSubmit={handleSearchSubmit}>
                     <i className="ms-2 bi bi-search d-inline"></i>
-                    <Form.Control style={{width: '140px'}} className='d-none m-1' type="text" placeholder="Search movie" />
+                    <Form.Control style={{width: '140px'}} onKeyUp={handleSearch} className='d-none m-1' type="text" placeholder="Search movie" />
                     
                 </Form>
                 <Nav.Link className={(location == '/movies') ? 'active' : ''}  href="/movies">
