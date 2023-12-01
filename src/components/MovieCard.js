@@ -1,9 +1,11 @@
 
 import '../assets/style/MovieCardStyle.css'
 import Card from 'react-bootstrap/Card'
+import noMovieImage from '../assets/img/noMovieImage.png'
+
 
 function MovieCard({id, title, backdrop_path}) {
-  const movieImg = (backdrop_path == null) ? '../../assets/img/NoImage.png' : 'https://image.tmdb.org/t/p/w500/' + backdrop_path
+  const movieImg = (backdrop_path == null) ? noMovieImage : 'https://image.tmdb.org/t/p/w500/' + backdrop_path
  
   
   return (

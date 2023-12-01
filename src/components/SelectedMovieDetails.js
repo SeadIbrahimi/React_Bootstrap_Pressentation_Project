@@ -1,17 +1,23 @@
 import '../assets/style/MoviesStyle.css'
 import Button from 'react-bootstrap/Button';
 import { useLocalStorage } from '@uidotdev/usehooks';
-
+import noMovieImage from '../assets/img/noMovieImage.png'
 
 function SelectedMovieDetails({id, title, overview, vote_average, release_date, popularity, original_language, backdrop_path}) {
-  const movieImg = (backdrop_path == null) ? '../assets/img/noMovie.png' : 'https://image.tmdb.org/t/p/w500/' + backdrop_path
+  const movieImg = (backdrop_path == null) ? noMovieImage : 'https://image.tmdb.org/t/p/w500/' + backdrop_path
   
   const [isLoggedIn, setIsLoggedIn] = useLocalStorage('isloggedin')
 
   const handleFavorites = (e) => {
     e.preventDefault()
-    isLoggedIn.favorites.push({id, title, backdrop_path})
-    setIsLoggedIn(isLoggedIn)
+    const favExists = isLoggedIn.favorites.filter(favorite => favorite.id == id)
+    if (favExists.length > 0){
+      alert(`You already have '${title}' in your favorites list!`)
+    }else{
+      isLoggedIn.favorites.push({id, title, backdrop_path})
+      setIsLoggedIn(isLoggedIn)
+    }
+    
   }
 
   return (

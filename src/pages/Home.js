@@ -11,7 +11,7 @@ function Home() {
   const [users, setUsers] = useLocalStorage('users', [])
   const [isLoggedIn, setIsLoggedIn] = useLocalStorage('isloggedin')
   const navigate = useNavigate()
-
+  
   useEffect(() => {
     if(isLoggedIn != null) {
       navigate('/movies')

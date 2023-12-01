@@ -1,8 +1,13 @@
-ul li a:hover{
-    transition: all 0.3s ease-in-out;
-    scale: 1.1;
-    background-color: red;
+
+.nav-link{
+    padding: 5px;
+    border-radius: 5px;
 }
-ul li .active{
+.nav-link:hover{
     background-color: red !important;
+    color: white;
+}
+.active{
+    background-color: red !important;
+    color: white;
 }

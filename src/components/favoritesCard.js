@@ -1,11 +1,26 @@
 
-
 import Card from 'react-bootstrap/Card'
+import noMovieImage from '../assets/img/noMovieImage.png'
+import CloseButton from 'react-bootstrap/CloseButton';
+import { useLocalStorage } from '@uidotdev/usehooks';
 
-function FavoritesCard(id, title, backdrop_path) {
+function FavoritesCard({id, title, backdrop_path}) {
+  const [isLoggedIn, setIsLoggedIn] = useLocalStorage('isloggedin')
   
-  console.log(id, title, backdrop_path)
-  const movieImg = (backdrop_path == null) ? '../../assets/img/NoImage.png' : 'https://image.tmdb.org/t/p/w500/' + backdrop_path
+  const handleClick = () => {
+    const leftFavorites = isLoggedIn.favorites.filter(favorite => favorite.id !== id);
+
+    const user = {
+      id: isLoggedIn.id,
+      fullname: isLoggedIn.fullname,
+      email: isLoggedIn.email,
+      password: isLoggedIn.password,
+      favorites: [...leftFavorites],
+    }
+    setIsLoggedIn(user)
+  }
+
+  const movieImg = (backdrop_path == null) ? noMovieImage : 'https://image.tmdb.org/t/p/w500/' + backdrop_path
  
   
   return (
@@ -14,7 +29,9 @@ function FavoritesCard(id, title, backdrop_path) {
       <Card.Body  className='w-100'>
         <Card.Title  className='text-uppercase text-nowrap text-truncate '>{title}</Card.Title>
       </Card.Body>
+      <CloseButton data-index={id} onClick={handleClick}></CloseButton>
     </Card>
+    
   )
 }
 

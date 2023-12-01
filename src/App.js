@@ -6,7 +6,7 @@ import FavoriteMovies from "./pages/FavoriteMovies";
 
 
 function App() {
-
+  
   return (
       <BrowserRouter>
         <Routes>

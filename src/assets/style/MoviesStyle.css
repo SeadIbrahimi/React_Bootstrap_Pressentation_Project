@@ -44,7 +44,24 @@
     scale: 1.2;
     color: rgba(102, 102, 102, 0.479) !important;
 }
-
+.nextPage{
+    height: 100%;
+    right: 0px !important;
+    top: 0px !important;
+    width: 40px;
+    background: linear-gradient(to left, #212529 25%, transparent);
+    align-items: center;
+}
+.nextPage p{
+    margin: 0 !important;
+    line-height: 0;
+    writing-mode: vertical-rl;
+    transition: all 0.5s ease-in-out;
+}
+.nextPage p:hover{
+    background-color: white !important;
+    color: #212529 !important;
+}
 .cardHover{
     border-radius: 10px;
     border: none;
