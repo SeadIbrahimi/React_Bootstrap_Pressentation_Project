@@ -58,7 +58,6 @@ function Movies() {
       nextPage.classList.remove('d-none')
       nextPage.classList.add('d-flex')
       rightArrow.classList.add('not-active')
-      leftArrow.classList.add('not-active')
     }else if (scroller.scrollLeft >= 0){
       leftArrow.classList.remove('not-active')
     }else{

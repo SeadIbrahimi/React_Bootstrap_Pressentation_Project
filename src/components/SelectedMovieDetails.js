@@ -7,6 +7,7 @@ function SelectedMovieDetails({id, title, overview, vote_average, release_date, 
   const movieImg = (backdrop_path == null) ? noMovieImage : 'https://image.tmdb.org/t/p/w500/' + backdrop_path
   
   const [isLoggedIn, setIsLoggedIn] = useLocalStorage('isloggedin')
+  const [users, setUsers] = useLocalStorage('users', [])
 
   const handleFavorites = (e) => {
     e.preventDefault()
@@ -16,6 +17,8 @@ function SelectedMovieDetails({id, title, overview, vote_average, release_date, 
     }else{
       isLoggedIn.favorites.push({id, title, backdrop_path})
       setIsLoggedIn(isLoggedIn)
+      const userLogedIn = users.filter(user => user.id != isLoggedIn.id)
+      setUsers([isLoggedIn, ...userLogedIn])
     }
     
   }

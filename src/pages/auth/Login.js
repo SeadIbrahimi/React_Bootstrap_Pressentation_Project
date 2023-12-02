@@ -25,7 +25,7 @@ function Login() {
     const db_users = users.filter(user => (user.email == email && user.password == password))
   
     if(db_users.length > 0) {
-      setIsLoggedIn(users[0])
+      setIsLoggedIn(db_users[0])
       navigate("/movies");
     } else {
       alert(`Invalid credentials!`)

@@ -59,7 +59,7 @@ function SideMenu(search) {
             <Nav className="me-auto d-flex flex-column text-nowrap gap-5 pt-5">
                 <Form inline onSubmit={handleSearchSubmit}>
                     <i className="ms-2 bi bi-search d-inline"></i>
-                    <Form.Control style={{width: '140px'}} onKeyUp={handleSearch} className='d-none m-1' type="text" placeholder="Search movie" />
+                    <Form.Control style={{width: '140px',pointerEvents: (location == '/movies/favorites') ? 'none' : 'auto'}} onKeyUp={handleSearch} className='d-none m-1' type="text" placeholder="Search movie"/>
                     
                 </Form>
                 <Nav.Link className={(location == '/movies') ? 'active' : ''}  href="/movies">
